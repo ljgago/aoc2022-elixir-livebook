@@ -137,15 +137,8 @@ defmodule PartOne do
     IO.puts("Result: #{run(input)}")
   end
 
-  def priority(val) do
-    cond do
-      String.match?(val, ~r/[a-z]/) ->
-        1 + (String.to_charlist(val) |> hd) - (String.to_charlist("a") |> hd)
-
-      String.match?(val, ~r/[A-Z]/) ->
-        27 + (String.to_charlist(val) |> hd) - (String.to_charlist("A") |> hd)
-    end
-  end
+  def priority(char) when char in ?a..?z, do: char - 96
+  def priority(char) when char in ?A..?Z, do: char - 38
 
   def run(input) do
     input
@@ -154,6 +147,7 @@ defmodule PartOne do
     |> Enum.map(&Enum.chunk_every(&1, div(Enum.count(&1), 2)))
     |> Enum.map(fn [p1, p2] -> [MapSet.new(p1), MapSet.new(p2)] end)
     |> Enum.map(fn [p1, p2] -> MapSet.intersection(p1, p2) |> MapSet.to_list() |> hd end)
+    |> Enum.map(&(String.to_charlist(&1) |> hd))
     |> Enum.map(&priority(&1))
     |> Enum.sum()
   end
@@ -217,6 +211,7 @@ defmodule PartTwo do
       |> MapSet.to_list()
       |> hd
     end)
+    |> Enum.map(&(String.to_charlist(&1) |> hd))
     |> Enum.map(&PartOne.priority(&1))
     |> Enum.sum()
   end
