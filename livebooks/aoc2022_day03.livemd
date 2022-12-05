@@ -91,6 +91,7 @@ Find the item type that corresponds to the badges of each three-Elf group. **Wha
 defmodule Parser do
   def parse(input) do
     input
+    |> String.trim()
     |> String.split("\n")
   end
 end

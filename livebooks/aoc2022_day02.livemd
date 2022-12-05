@@ -68,6 +68,7 @@ Following the Elf's instructions for the second column, **what would your total 
 defmodule Parser do
   def parse(input) do
     input
+    |> String.trim()
     |> String.split("\n")
   end
 end
