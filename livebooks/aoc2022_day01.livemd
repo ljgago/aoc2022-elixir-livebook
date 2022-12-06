@@ -75,7 +75,6 @@ Find the top three Elves carrying the most Calories. **How many Calories are tho
 defmodule Parser do
   def parse(input) do
     input
-    |> String.trim()
     |> String.split("\n\n")
     |> Enum.map(fn val ->
       String.split(val, "\n")

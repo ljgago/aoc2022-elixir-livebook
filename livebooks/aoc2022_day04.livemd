@@ -86,7 +86,6 @@ So, in this example, the number of overlapping assignment pairs is **`4`**.
 defmodule Parser do
   def parse(input) do
     input
-    |> String.trim()
     |> String.split("\n")
     |> Enum.map(&String.split(&1, ~r/[,-]/))
     |> Enum.map(fn pairs -> Enum.map(pairs, &String.to_integer(&1)) end)
